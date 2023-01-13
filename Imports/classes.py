@@ -1,5 +1,6 @@
 from easystring import *
 
+# Genre class for book genres
 class genre:
     def __init__(self) -> None:
         self.Adventure = "Adventure"
@@ -17,6 +18,7 @@ class genre:
 
         self.Satire = "Satire"
 
+# Type class for Fiction or Non-Fiction
 class type:
     def __init__(self):
         self.Fiction = "Fiction"
@@ -40,6 +42,7 @@ class Book:
     def return_book(self) -> None:
         self.is_being_borrowed = False
 
+# Result class for getting a result
 class Result:
     def __init__(self, search: str, books: tuple[Book]):
         result = {}
@@ -54,5 +57,6 @@ class Result:
 
         return dict(sorted(result.items(), key=lambda item: item[1], reverse=True))
 
+# Create the classes
 Type = type()
 Genre = genre()
