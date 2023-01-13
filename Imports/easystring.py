@@ -1,3 +1,4 @@
+# String matches function
 def get_string_matches(string: str, string2: str):
     matches = 0
     string, string2 = string.lower(), string2.lower()
