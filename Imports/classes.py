@@ -1,4 +1,4 @@
-from easystring import *
+from Imports.easystring import get_string_matches
 
 # Genre class for book genres
 class genre:
@@ -26,12 +26,12 @@ class type:
 
 # Book class, containing the title, author and genre
 class Book:
-    def __init__(self, title: str, author: str, genre: str, type: str) -> None:
+    def __init__(self, title: str, author: str, genre: str, type: str, is_being_borrowed: bool = False) -> None:
         self.title = title
         self.author = author
         self.genre = genre
         self.type = type
-        self.is_being_borrowed = False
+        self.is_being_borrowed = is_being_borrowed
 
     def display_info(self) -> str:
        return f"{self.title} by {self.author} Genre: {self.genre}" 
@@ -42,20 +42,12 @@ class Book:
     def return_book(self) -> None:
         self.is_being_borrowed = False
 
-# Result class for getting a result
-class Result:
-    def __init__(self, search: str, books: tuple[Book]):
-        result = {}
+    def dump(self) -> tuple:
+        return (self.title, self.author, self.genre, self.type, self.is_being_borrowed)
 
-        for i in books:
-            matches = round(get_string_matches(i.title, search) * 2)
-            matches += get_string_matches(i.author, search)
-            matches += round(get_string_matches(i.genre, search) / 4)
-            matches += round(get_string_matches(i.type, search) / 10)
+    def create_book(self, attributes: tuple):
+        return Book(*attributes)
 
-            result[i.title] = matches
-
-        return dict(sorted(result.items(), key=lambda item: item[1], reverse=True))
 
 # Create the classes
 Type = type()
