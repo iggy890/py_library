@@ -34,7 +34,7 @@ class Book:
         self.is_being_borrowed = is_being_borrowed
 
     def display_info(self) -> str:
-       return f"{self.title} by {self.author} Genre: {self.genre}" 
+       return f"{self.title} by {self.author}" 
 
     def borrow(self) -> None:
         self.is_being_borrowed = True
