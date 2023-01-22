@@ -22,7 +22,7 @@ window.geometry("800x800")
 
 # Create the search bar
 search_box = Entry(window, width=30)
-search_box.grid(column=1, row=0)
+search_box.grid(column=0, row=0)
 
 # Create the results
 results_label = Label(window, text=f"Welcome to py_library {VERSION}")
@@ -32,9 +32,10 @@ def clicked():
     txt = search_box.get()
     results = search(txt, books)
     string = ""
+    print(results)
 
-    for i, j in zip(results):
-        string += f"{i}: {j}"
+    for i, j in zip(results.keys(), results.values()):
+        string += f"{i.display_info()}: {j}\n"
 
     results_label.configure(text=string)
 
