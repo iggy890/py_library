@@ -31,6 +31,6 @@ def search(search: str, books: tuple[Book]):
         matches += round(get_string_matches(i.genre, search) / 4)
         matches += round(get_string_matches(i.type, search) / 10)
 
-        result[i.title] = matches
+        result[i] = matches
 
     return dict(sorted(result.items(), key=lambda item: item[1], reverse=True))
