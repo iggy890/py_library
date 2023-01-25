@@ -1,4 +1,4 @@
-from Imports.easystring import get_string_matches
+from tkinter import Scrollbar, Button, Text
 
 # Genre class for book genres
 class genre:
@@ -31,22 +31,49 @@ class Book:
         self.author = author
         self.genre = genre
         self.type = type
-        self.is_being_borrowed = is_being_borrowed
+        self.on_loan = is_being_borrowed
 
     def display_info(self) -> str:
        return f"{self.title} by {self.author}" 
 
+    def return_loan_state(self) -> bool:
+        return self.on_loan
+
     def borrow(self) -> None:
-        self.is_being_borrowed = True
+        self.on_loan = True
     
     def return_book(self) -> None:
-        self.is_being_borrowed = False
+        self.on_loan = False
 
     def dump(self) -> tuple:
         return (self.title, self.author, self.genre, self.type, self.is_being_borrowed)
 
     def create_book(self, attributes: tuple):
         return Book(*attributes)
+
+class Bar:
+    def __init__(self, window):
+        text = Text(window)
+        text.grid(column=0, row=2)
+        self.text = text
+
+        sb = Scrollbar(window, command=text.yview)
+        sb.grid(column=0, row=1)
+        self.sb = sb
+
+
+    def return_text(self) -> Text:
+        return self.text
+
+    def add_button(self, button: Button):
+        self.text.configure(state="normal")
+
+        self.text.configure(yscrollcommand=self.sb.set)
+        self.text.window_create("end", window=button)
+        self.text.insert("end", "\n")
+
+        self.text.configure(state="disabled")
+    
 
 
 # Create the classes
