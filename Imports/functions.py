@@ -6,6 +6,10 @@ from Imports.easystring import get_string_matches
 def append_to_tuple(t: tuple, value) -> None:
     t = t + (value,)
 
+# Create Book from tuple attributes
+def create_book(attributes: tuple):
+    return Book(*attributes)
+
 # Save a tuple of books to the provided file
 def save_books_to_file(books: tuple[Book], filename: str):
     with open(filename, "w") as file:
@@ -15,8 +19,7 @@ def save_books_to_file(books: tuple[Book], filename: str):
 def load_books_from_file(filename: str):
     with open(filename, 'r') as file:
         load = file.read()
-
-    print(tuple(load))
+        
     return tuple(load)
 
 def bool_to_yes_no(boolean: bool):
