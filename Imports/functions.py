@@ -11,15 +11,19 @@ def save_books_to_file(books: tuple[Book], filename: str):
     with open(filename, "w") as file:
         file.write(str((i.dump() for i in books)))
 
-# TODO Create decoding function
-
-# TODO Finish decoding
+# Decoding
 def load_books_from_file(filename: str):
     with open(filename, 'r') as file:
         load = file.read()
 
     print(tuple(load))
     return tuple(load)
+
+def bool_to_yes_no(boolean: bool):
+    if boolean:
+        return "Yes"
+    else:
+        return "No"
 
 # Search for books in a tuple of books
 def search(search: str, books: tuple[Book]):

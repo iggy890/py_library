@@ -1,4 +1,4 @@
-from tkinter import Scrollbar, Button, Text
+from tkinter import Scrollbar, Button, Text, END
 
 # Genre class for book genres
 class genre:
@@ -46,31 +46,44 @@ class Book:
         self.on_loan = False
 
     def dump(self) -> tuple:
-        return (self.title, self.author, self.genre, self.type, self.is_being_borrowed)
+        return (self.title, self.author, self.genre, self.type, self.on_loan)
 
     def create_book(self, attributes: tuple):
         return Book(*attributes)
 
 class Bar:
-    def __init__(self, window):
-        text = Text(window)
+    def __init__(self, window, width: int = 500, height: int = 100):
+        text = Text(window, width=width, height=height)
         text.grid(column=0, row=2)
         self.text = text
+        self.text.configure(state="disabled")
 
         sb = Scrollbar(window, command=text.yview)
         sb.grid(column=0, row=1)
         self.sb = sb
 
-
     def return_text(self) -> Text:
         return self.text
 
+    def configure(self, width: int = None, height: int = None):
+        if width == None and height != None:
+            self.text.configure(height=height)
+        elif height == None and width != None:
+            self.text.configure(width=width)
+        else:
+            self.text.configure(width=width, height=height)
+
+    def clear(self) -> None:
+        self.text.configure(state="normal")
+        self.text.delete('1.0', END)
+        self.text.configure(state="disabled")
+    
     def add_button(self, button: Button):
         self.text.configure(state="normal")
 
         self.text.configure(yscrollcommand=self.sb.set)
         self.text.window_create("end", window=button)
-        self.text.insert("end", "\n")
+        self.text.insert(END, "\n")
 
         self.text.configure(state="disabled")
     
