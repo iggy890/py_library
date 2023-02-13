@@ -22,6 +22,16 @@ def load_books_from_file(filename: str):
         
     return tuple(load)
 
+# Repeat a string the specified amount of times
+def repeat_string(s: str, repeats: int):
+    return_string = ""
+    
+    for i in range(repeats):
+        return_string + s
+
+    return return_string
+
+# Covert a boolean to "Yes" or "No"
 def bool_to_yes_no(boolean: bool):
     if boolean:
         return "Yes"
