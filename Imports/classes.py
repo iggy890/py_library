@@ -24,6 +24,13 @@ class type:
         self.Fiction = "Fiction"
         self.Non_Fiction = "Non-Fiction"
 
+
+class Person:
+    def __init__(self, name: str, address: str, phone_number: int):
+        self.name = name
+        self.address = address
+
+
 # Book class, containing the title, author and genre
 class Book:
     def __init__(self, title: str, author: str, genre: str, type: str, is_being_borrowed: bool = False) -> None:
@@ -33,8 +40,14 @@ class Book:
         self.type = type
         self.on_loan = is_being_borrowed
 
-    def display_info(self) -> str:
-       return f"{self.title} by {self.author}" 
+    def info_title(self) -> str:
+        return self.title
+
+    def info_author(self) -> str:
+        return self.author
+
+    def info_genre(self) -> str:
+        return self.genre
 
     def return_loan_state(self) -> bool:
         return self.on_loan
@@ -48,9 +61,7 @@ class Book:
     def dump(self) -> tuple:
         return (self.title, self.author, self.genre, self.type, self.on_loan)
 
-    def create_book(self, attributes: tuple):
-        return Book(*attributes)
-
+# Scroll bar class
 class Bar:
     def __init__(self, window, width: int = 500, height: int = 100):
         text = Text(window, width=width, height=height)
