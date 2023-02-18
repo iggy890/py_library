@@ -3,3 +3,4 @@ __pycache__/
 
 *.vscodeignore
 *.DS_Store
+testing.py
