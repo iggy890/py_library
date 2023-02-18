@@ -12,13 +12,24 @@ def create_book(attributes: tuple):
 
 # Save a tuple of books to the provided file
 def save_books_to_file(books: tuple[Book], filename: str):
+    print(str(books[0].dump()))
     with open(filename, "w") as file:
-        file.write(str((i.dump() for i in books)))
+        for i in books:
+            file.write(str(i.dump()).replace('"', '')+"\n")
+
+#def reformat_to_list(s):
+#    return "a"
+
+# Format a Book() tuple
+def format_book_tuple(t: tuple):
+    return_tuple = ()
+    for i in t:
+        print(i)
 
 # Decoding
 def load_books_from_file(filename: str):
     with open(filename, 'r') as file:
-        load = file.read()
+        load = file.readlines()
         
     return tuple(load)
 
@@ -41,12 +52,13 @@ def bool_to_yes_no(boolean: bool):
 # Search for books in a tuple of books
 def search(search: str, books: tuple[Book]):
     result = {}
-
+    print(books)
     for i in books:
-        matches = round(get_string_matches(i.title, search) * 2)
-        matches += get_string_matches(i.author, search)
-        matches += round(get_string_matches(i.genre, search) / 4)
-        matches += round(get_string_matches(i.type, search) / 10)
+        print("data", i)
+        matches = round(get_string_matches(i.info_title(), search) * 2)
+        matches += get_string_matches(i.info_author(), search)
+        matches += round(get_string_matches(i.info_genre(), search) / 4)
+        matches += round(get_string_matches(i.info_type(), search) / 10)
 
         result[i] = matches
 
