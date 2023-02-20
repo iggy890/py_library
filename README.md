@@ -7,6 +7,6 @@ A small, lightweight solution for libraries across the world. Written 100% in Py
 * Removing books
 * Borrowing books
 
-Latest Version: 0.1
+Latest Version: 0.1.2
 
 **iggy890**
